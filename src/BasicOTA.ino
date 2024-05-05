@@ -3,7 +3,7 @@
 #include <WiFi.h>
 #include <ArduinoOTA.h>
 
-const char *ssid = "Avian Ambassadors";
+const char *ssid = "Avian Ambassadors 5g";
 const char *password = "mijo498rocks";
 
 void setup() {
