@@ -6,7 +6,11 @@
 const char *ssid = "Avian Ambassadors 5g";
 const char *password = "mijo498rocks";
 
+#define BLINK_LED 12
+
 void setup() {
+  pinMode(BLINK_LED, OUTPUT) ;
+  digitalWrite(BLINK_LED, LOW) ;
   Serial.begin(115200);
   Serial.println("Booting");
   WiFi.mode(WIFI_STA);
@@ -16,6 +20,7 @@ void setup() {
     delay(5000);
     ESP.restart();
   }
+  digitalWrite(BLINK_LED, HIGH) ;
 
   // Port defaults to 3232
   // ArduinoOTA.setPort(3232);
@@ -71,5 +76,15 @@ void setup() {
 }
 
 void loop() {
+  static bool ledState = false ;
   ArduinoOTA.handle();
+  if ( ledState ) {
+    ledState = false ;
+    digitalWrite(BLINK_LED, LOW) ;
+  } else {
+    ledState = true ;
+    digitalWrite(BLINK_LED, HIGH) ;
+  }
+
+  delay(100) ;
 }
